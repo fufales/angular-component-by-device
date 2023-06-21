@@ -8,4 +8,15 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 })
 export class TestingLpComponent {
 
+  deviceInfo: any;
+
+  constructor(private deviceService: DeviceDetectorService)
+  {
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+  }
+
+  ngOnInit(): void {
+    console.log(this.deviceInfo.deviceType);
+  }
+
 }
