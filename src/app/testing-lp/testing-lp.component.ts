@@ -9,6 +9,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 export class TestingLpComponent {
 
   deviceInfo: any;
+  deviceType: any;
 
   constructor(private deviceService: DeviceDetectorService)
   {
@@ -16,7 +17,10 @@ export class TestingLpComponent {
   }
 
   ngOnInit(): void {
-    console.log(this.deviceInfo.deviceType);
+    
+    // Check if this device is Desktop
+    this.deviceType = this.deviceService.isDesktop();
+
   }
 
 }
