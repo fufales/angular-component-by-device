@@ -7,6 +7,8 @@
 
 # Dependencies
 /node_modules
+.angular
+/.angular
 
 # Cordova
 /www
