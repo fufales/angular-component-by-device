@@ -1,27 +1,80 @@
-# AngularComponentByDevice
+# Angular - Render Component By Device
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
+## Install - `ngx-device-detector`
 
-## Development server
+This is an angular wrapper for node-device-detector, which is a library that allows you to detect the device type, brand, model, operating system, browser, and client of a user agent string1. It provides a service and a module that you can import in your app.module.ts file and inject in your components.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+```
+npm i ngx-device-detector
+```
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+To install this library, run:
+```
+npm install ngx-device-detector --save --force
+```
 
-## Build
+In your component where you want to use the Device Service
+```
+import { DeviceDetectorService } from 'ngx-device-detector';
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Declare the variables inside the Component Class
+```
+// Declare variables
+deviceInfo: any;
+deviceType: any;
+```
 
-## Running unit tests
+Change the constructor and inject the variables
+```
+// Inject DeviceDetectorService
+constructor(private deviceService: DeviceDetectorService)
+{
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+}
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Result
+The file should looks like this example below:
 
-## Running end-to-end tests
+```
+export class TestingLpComponent {
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+  // Declare variables
+  deviceInfo: any;
+  deviceType: any;
 
-## Further help
+  // Inject DeviceDetectorService
+  constructor(private deviceService: DeviceDetectorService)
+  {
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+  }
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  ngOnInit(): void {
+    
+    // Check if this device is Desktop
+    // Send true or false to deviceType variable
+    this.deviceType = this.deviceService.isDesktop();
+  }
+
+}
+```
+
+## Examples
+
+- [testing-lp.component.ts](/src/app/testing-lp/testing-lp.component.ts)
+    - On this file you will find the main configuration of the component under the sub-domain `/test`.
+- [testing-lp.component.html](/src/app/testing-lp/testing-lp.component.html)
+    - On this file you will find the HTML implementation to load different templates base on the device type. (Example below).
+
+### HTML example
+```
+<app-testing-lp-desktop *ngIf="deviceType === true"></app-testing-lp-desktop>
+
+<app-testing-lp-mobile *ngIf="deviceType === false"></app-testing-lp-mobile>
+```
+
+
+Documented by Christopher Quiros.
