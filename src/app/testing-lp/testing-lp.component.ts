@@ -20,7 +20,6 @@ export class TestingLpComponent {
     
     // Check if this device is Desktop
     this.deviceType = this.deviceService.isDesktop();
-
   }
 
 }
